@@ -1,0 +1,492 @@
+.section {
+  padding: 80px 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  margin-bottom: 12px;
+}
+
+.content {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(233, 69, 96, 0.1);
+}
+
+.scoreCard {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 24px;
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+}
+
+.aiCard {
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.aiHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.aiTitle {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.aiSubtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.aiScore {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.aiScoreValue {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.aiScoreUnit {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.aiMeter {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.aiMeterFill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-full);
+  transition: width 0.8s ease;
+}
+
+.aiMeta {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aiLabel {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.aiNote {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.aiSignals {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.aiSignal {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aiSignalName {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.aiSignalValue {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.qualityCard {
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.qualityHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.qualityTitle {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.qualitySubtitle {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.qualityScore {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.qualityScoreValue {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.qualityScoreUnit {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.qualityMeter {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.qualityMeterFill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-full);
+  transition: width 0.8s ease;
+}
+
+.qualityMeta {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qualityLabel {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.qualityNote {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.qualityRows {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qualityRow {
+  display: grid;
+  grid-template-columns: 110px 1fr 60px;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.qualityRowLabel {
+  color: var(--color-text-secondary);
+}
+
+.qualityRowBar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.qualityRowFill {
+  height: 100%;
+  width: 0%;
+  border-radius: var(--radius-full);
+}
+
+.qualityRowValue {
+  text-align: right;
+  font-weight: 600;
+}
+
+.qualityIssues {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.qualityIssue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.qualityIssueCategory {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-accent);
+}
+
+.qualityIssueText {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.circleWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.circleBg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 8;
+}
+
+.circleProgress {
+  fill: none;
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease;
+}
+
+.scoreValue {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: baseline;
+}
+
+.percentage {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.percentSign {
+  font-size: 18px;
+  color: var(--color-text-secondary);
+}
+
+.scoreInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.riskLabel {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.statsLabel {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.matchesSection {
+  margin-bottom: 24px;
+}
+
+.matchesTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: var(--color-warning);
+}
+
+.matchesList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.matchItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+.matchText {
+  font-size: 14px;
+  color: var(--color-text-primary);
+}
+
+.matchSource {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+}
+
+.noMatches {
+  text-align: center;
+  padding: 32px;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+}
+
+.noMatchesIcon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: var(--color-success);
+  color: var(--color-background);
+  border-radius: 50%;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.noMatches h3 {
+  margin-bottom: 8px;
+  color: var(--color-success);
+}
+
+.noMatches p {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.highlightedText {
+  margin-bottom: 24px;
+}
+
+.highlightedTitle {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.textDisplay {
+  padding: 16px;
+  background: var(--color-background);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.8;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.highlighted {
+  background: rgba(233, 69, 96, 0.3);
+  color: var(--color-accent);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.copyBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 640px) {
+  .scoreCard {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .aiHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .aiSignals {
+    grid-template-columns: 1fr;
+  }
+
+  .qualityHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .qualityRow {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+
+  .qualityRowValue {
+    text-align: left;
+  }
+}
