@@ -31,6 +31,13 @@ export function exportToJSON(result: PlagiarismResult, originalText: string): vo
 }
 
 export function exportToPDF(result: PlagiarismResult, originalText: string): void {
+  // Escape HTML to prevent XSS
+  const escapeHtml = (text: string): string => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  };
+
   const getSimilarityLabel = (similarity: number) => {
     if (similarity < 20) return 'Low';
     if (similarity < 50) return 'Moderate';
@@ -42,6 +49,8 @@ export function exportToPDF(result: PlagiarismResult, originalText: string): voi
     if (score >= 50) return 'Moderate';
     return 'Needs Work';
   };
+
+  const escapedText = escapeHtml(originalText.substring(0, 1000)) + (originalText.length > 1000 ? '...' : '');
 
   const html = `
 <!DOCTYPE html>
@@ -308,7 +317,7 @@ export function exportToPDF(result: PlagiarismResult, originalText: string): voi
   <div class="section">
     <h2>Text Preview</h2>
     <div class="text-preview">
-      ${originalText.substring(0, 1000)}${originalText.length > 1000 ? '...' : ''}
+      ${escapedText}
     </div>
   </div>
 

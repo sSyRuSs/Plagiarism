@@ -50,7 +50,7 @@ export function HistoryProvider({ children }: { children: ReactNode }) {
 
   const addToHistory = (text: string, result: PlagiarismResult) => {
     const newItem: CheckHistoryItem = {
-      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      id: `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
       timestamp: Date.now(),
       text,
       result,

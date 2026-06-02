@@ -26,7 +26,7 @@ export function addCustomDocument(document: Omit<CustomDocument, 'id' | 'dateAdd
   
   const newDoc: CustomDocument = {
     ...document,
-    id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+    id: `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
     dateAdded: Date.now(),
   };
   
