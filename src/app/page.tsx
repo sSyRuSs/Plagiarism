@@ -8,6 +8,7 @@ import Results from '@/components/Results';
 import ComparisonView from '@/components/ComparisonView';
 import HowItWorks from '@/components/HowItWorks';
 import History from '@/components/History';
+import Analytics from '@/components/Analytics';
 import Footer from '@/components/Footer';
 import { checkPlagiarism, PlagiarismResult } from '@/lib/plagiarism';
 import { useHistory } from '@/contexts/HistoryContext';
@@ -115,6 +116,8 @@ export default function Home() {
         )}
         
         <History onLoadFromHistory={handleLoadFromHistory} />
+        
+        <Analytics />
         
         <HowItWorks />
       </main>

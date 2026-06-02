@@ -92,6 +92,22 @@ const translations: Record<Language, Record<string, string>> = {
     'comparison.more': 'more',
     'comparison.noSources': 'No matching sources found',
     
+    // Analytics
+    'analytics.title': 'Analytics Dashboard',
+    'analytics.description': 'Insights from your plagiarism checks',
+    'analytics.noData': 'No Analytics Data Yet',
+    'analytics.noDataDesc': 'Start checking documents to see analytics and insights',
+    'analytics.totalChecks': 'Total Checks',
+    'analytics.avgSimilarity': 'Avg Similarity',
+    'analytics.avgAiScore': 'Avg AI Likelihood',
+    'analytics.avgWritingQuality': 'Avg Writing Quality',
+    'analytics.riskDistribution': 'Risk Distribution',
+    'analytics.lowRisk': 'Low Risk',
+    'analytics.moderateRisk': 'Moderate Risk',
+    'analytics.highRisk': 'High Risk',
+    'analytics.topSources': 'Top Matching Sources',
+    'analytics.recentTrend': 'Recent Similarity Trend',
+    
     // Export
     'results.exportTXT': 'Export TXT',
   },
@@ -175,6 +191,22 @@ const translations: Record<Language, Record<string, string>> = {
     'comparison.matches': 'trùng khớp',
     'comparison.more': 'thêm',
     'comparison.noSources': 'Không tìm thấy nguồn trùng khớp',
+    
+    // Analytics
+    'analytics.title': 'Bảng Phân Tích',
+    'analytics.description': 'Thông tin chi tiết từ các lần kiểm tra đạo văn',
+    'analytics.noData': 'Chưa Có Dữ Liệu Phân Tích',
+    'analytics.noDataDesc': 'Bắt đầu kiểm tra tài liệu để xem phân tích và thông tin chi tiết',
+    'analytics.totalChecks': 'Tổng Số Lần Kiểm Tra',
+    'analytics.avgSimilarity': 'Độ Tương Đồng TB',
+    'analytics.avgAiScore': 'Khả Năng AI TB',
+    'analytics.avgWritingQuality': 'Chất Lượng Viết TB',
+    'analytics.riskDistribution': 'Phân Bố Rủi Ro',
+    'analytics.lowRisk': 'Rủi Ro Thấp',
+    'analytics.moderateRisk': 'Rủi Ro Trung Bình',
+    'analytics.highRisk': 'Rủi Ro Cao',
+    'analytics.topSources': 'Nguồn Trùng Khớp Hàng Đầu',
+    'analytics.recentTrend': 'Xu Hướng Tương Đồng Gần Đây',
     
     // Export
     'results.exportTXT': 'Xuất TXT',
