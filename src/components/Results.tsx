@@ -3,6 +3,8 @@
 import { useMemo } from 'react';
 import styles from './Results.module.css';
 import { PlagiarismResult } from '@/lib/plagiarism';
+import { exportToJSON, exportToPDF, exportToText } from '@/lib/utils/export';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ResultsProps {
   result: PlagiarismResult;
@@ -10,6 +12,8 @@ interface ResultsProps {
 }
 
 export default function Results({ result, originalText }: ResultsProps) {
+  const { t } = useLanguage();
+  
   const highlightedText = useMemo(() => {
     if (!result.matches.length) return originalText;
     
@@ -50,9 +54,9 @@ export default function Results({ result, originalText }: ResultsProps) {
   };
 
   const getSimilarityLabel = (similarity: number) => {
-    if (similarity < 20) return 'Low';
-    if (similarity < 50) return 'Moderate';
-    return 'High';
+    if (similarity < 20) return t('results.low');
+    if (similarity < 50) return t('results.moderate');
+    return t('results.high');
   };
 
   const getQualityColor = (score: number) => {
@@ -62,9 +66,9 @@ export default function Results({ result, originalText }: ResultsProps) {
   };
 
   const getQualityLabel = (score: number) => {
-    if (score >= 80) return 'Strong';
-    if (score >= 50) return 'Moderate';
-    return 'Needs Work';
+    if (score >= 80) return t('results.strong');
+    if (score >= 50) return t('results.moderate');
+    return t('results.needsWork');
   };
 
   const similarityColor = getSimilarityColor(result.similarity);
@@ -116,7 +120,7 @@ ${
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Results</h2>
+          <h2 className={styles.title}>{t('results.title')}</h2>
         </div>
 
         <div className={styles.content}>
@@ -151,10 +155,10 @@ ${
                 className={styles.riskLabel}
                 style={{ color: similarityColor }}
               >
-                {similarityLabel} Similarity
+                {similarityLabel} {t('results.similarity')}
               </span>
               <span className={styles.statsLabel}>
-                {result.wordCount} words • {result.charCount} characters
+                {result.wordCount} {t('input.words')} • {result.charCount} {t('input.characters')}
               </span>
             </div>
           </div>
@@ -162,9 +166,9 @@ ${
           <div className={styles.aiCard}>
             <div className={styles.aiHeader}>
               <div>
-                <h3 className={styles.aiTitle}>AI Writing Check</h3>
+                <h3 className={styles.aiTitle}>{t('results.aiCheck')}</h3>
                 <p className={styles.aiSubtitle}>
-                  Estimates how strongly the text matches common AI writing patterns.
+                  {t('results.aiCheckSubtitle')}
                 </p>
               </div>
               <div className={styles.aiScore}>
@@ -190,7 +194,7 @@ ${
             <div className={styles.aiMeta}>
               {aiCheck.status === 'ready' ? (
                 <span className={styles.aiLabel} style={{ color: aiColor }}>
-                  {aiCheck.label} AI likelihood
+                  {aiCheck.label} {t('results.aiLikelihood')}
                 </span>
               ) : (
                 <span className={styles.aiNote}>{aiCheck.note}</span>
@@ -211,9 +215,9 @@ ${
           <div className={styles.qualityCard}>
             <div className={styles.qualityHeader}>
               <div>
-                <h3 className={styles.qualityTitle}>Grammar & Vocabulary</h3>
+                <h3 className={styles.qualityTitle}>{t('results.writingQuality')}</h3>
                 <p className={styles.qualitySubtitle}>
-                  Highlights clarity, grammar consistency, and vocabulary range.
+                  {t('results.writingQualitySubtitle')}
                 </p>
               </div>
               <div className={styles.qualityScore}>
@@ -239,7 +243,7 @@ ${
             <div className={styles.qualityMeta}>
               {writingQuality.status === 'ready' ? (
                 <span className={styles.qualityLabel} style={{ color: overallQualityColor }}>
-                  {getQualityLabel(writingQuality.overallScore)} writing quality
+                  {getQualityLabel(writingQuality.overallScore)} {t('results.writingQualityLabel')}
                 </span>
               ) : (
                 <span className={styles.qualityNote}>{writingQuality.note}</span>
@@ -249,7 +253,7 @@ ${
               <>
                 <div className={styles.qualityRows}>
                   <div className={styles.qualityRow}>
-                    <span className={styles.qualityRowLabel}>Grammar</span>
+                    <span className={styles.qualityRowLabel}>{t('results.grammar')}</span>
                     <div className={styles.qualityRowBar}>
                       <div
                         className={styles.qualityRowFill}
@@ -259,7 +263,7 @@ ${
                     <span className={styles.qualityRowValue}>{writingQuality.grammarScore}%</span>
                   </div>
                   <div className={styles.qualityRow}>
-                    <span className={styles.qualityRowLabel}>Vocabulary</span>
+                    <span className={styles.qualityRowLabel}>{t('results.vocabulary')}</span>
                     <div className={styles.qualityRowBar}>
                       <div
                         className={styles.qualityRowFill}
@@ -288,13 +292,13 @@ ${
           {result.matches.length > 0 && (
             <div className={styles.matchesSection}>
               <h3 className={styles.matchesTitle}>
-                <span>⚠</span> Matches Found ({result.matches.length})
+                <span>⚠</span> {t('results.matchesFound')} ({result.matches.length})
               </h3>
               <div className={styles.matchesList}>
                 {result.matches.slice(0, 10).map((match, index) => (
                   <div key={index} className={styles.matchItem}>
                     <span className={styles.matchText}>&quot;{match.text}&quot;</span>
-                    <span className={styles.matchSource}>from: {match.source}</span>
+                    <span className={styles.matchSource}>{t('results.from')}: {match.source}</span>
                   </div>
                 ))}
               </div>
@@ -304,13 +308,13 @@ ${
           {result.matches.length === 0 && (
             <div className={styles.noMatches}>
               <span className={styles.noMatchesIcon}>✓</span>
-              <h3>No Matches Found</h3>
-              <p>Your text appears to be original and does not match any sources in our database.</p>
+              <h3>{t('results.noMatches')}</h3>
+              <p>{t('results.noMatchesDesc')}</p>
             </div>
           )}
 
           <div className={styles.highlightedText}>
-            <h3 className={styles.highlightedTitle}>Highlighted Text</h3>
+            <h3 className={styles.highlightedTitle}>{t('results.highlightedText')}</h3>
             <div className={styles.textDisplay}>
               {Array.isArray(highlightedText) ? (
                 highlightedText.map((part, index) => (
@@ -327,9 +331,20 @@ ${
             </div>
           </div>
 
-          <button className={styles.copyBtn} onClick={handleCopyReport}>
-            <span>📋</span> Copy Report
-          </button>
+          <div className={styles.exportButtons}>
+            <button className={styles.copyBtn} onClick={handleCopyReport}>
+              <span>📋</span> {t('results.copyReport')}
+            </button>
+            <button className={styles.exportBtn} onClick={() => exportToPDF(result, originalText)}>
+              <span>📄</span> {t('results.exportPDF')}
+            </button>
+            <button className={styles.exportBtn} onClick={() => exportToJSON(result, originalText)}>
+              <span>💾</span> {t('results.exportJSON')}
+            </button>
+            <button className={styles.exportBtn} onClick={() => exportToText(result, originalText)}>
+              <span>📝</span> {t('results.exportTXT')}
+            </button>
+          </div>
         </div>
       </div>
     </section>

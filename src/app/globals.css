@@ -1,4 +1,4 @@
-:root {
+:root, [data-theme="dark"] {
   --color-primary: #1a1a2e;
   --color-secondary: #16213e;
   --color-accent: #e94560;
@@ -25,6 +25,22 @@
   --radius-full: 9999px;
 }
 
+[data-theme="light"] {
+  --color-primary: #f8f9fa;
+  --color-secondary: #e9ecef;
+  --color-accent: #e94560;
+  --color-background: #ffffff;
+  --color-surface: #f8f9fa;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #6c757d;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  --shadow-card: 0 4px 24px rgba(26, 26, 46, 0.08);
+  --shadow-hover: 0 8px 32px rgba(26, 26, 46, 0.12);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -42,6 +58,13 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background 300ms ease, color 300ms ease;
+}
+
+[data-theme="light"] body::before {
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(233, 69, 96, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(233, 233, 242, 0.5) 0%, transparent 50%);
 }
 
 body::before {
@@ -57,6 +80,7 @@ body::before {
     radial-gradient(ellipse at 50% 50%, rgba(26, 26, 46, 0.3) 0%, transparent 70%);
   pointer-events: none;
   z-index: -1;
+  transition: background 300ms ease;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -1,0 +1,70 @@
+.settings {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.themeToggle {
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms ease;
+}
+
+.themeToggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(233, 69, 96, 0.3);
+}
+
+.languageToggle {
+  display: flex;
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.languageToggle button {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 300ms ease;
+  font-family: var(--font-heading);
+}
+
+.languageToggle button:hover {
+  color: var(--color-text-primary);
+}
+
+.languageToggle button.active {
+  background: var(--color-accent);
+  color: white;
+}
+
+@media (max-width: 640px) {
+  .settings {
+    gap: 8px;
+  }
+  
+  .themeToggle {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+  
+  .languageToggle button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

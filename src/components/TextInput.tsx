@@ -2,28 +2,64 @@
 
 import { useState, useRef, useEffect } from 'react';
 import * as mammoth from 'mammoth/mammoth.browser';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './TextInput.module.css';
 
 interface TextInputProps {
   onCheck: (text: string) => void;
   isChecking: boolean;
+  initialText?: string;
+  onRealtimeChange?: (text: string) => void;
+  realtimeEnabled?: boolean;
 }
 
 const SAMPLE_TEXT = `Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. The field has gained tremendous popularity in recent years due to the abundance of data and increased computing power.`;
 
-export default function TextInput({ onCheck, isChecking }: TextInputProps) {
-  const [text, setText] = useState('');
+export default function TextInput({ 
+  onCheck, 
+  isChecking, 
+  initialText,
+  onRealtimeChange,
+  realtimeEnabled = false 
+}: TextInputProps) {
+  const { t } = useLanguage();
+  const [text, setText] = useState(initialText || '');
   const [error, setError] = useState('');
   const [fileName, setFileName] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const allowedTypes = ['.txt', '.doc', '.docx', '.pdf'];
+
+  useEffect(() => {
+    if (initialText) {
+      setText(initialText);
+    }
+  }, [initialText]);
 
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    if (realtimeEnabled && onRealtimeChange && text.length >= 50) {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+      
+      debounceTimerRef.current = setTimeout(() => {
+        onRealtimeChange(text);
+      }, 1500); // 1.5 second debounce
+    }
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [text, realtimeEnabled, onRealtimeChange]);
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
@@ -96,11 +132,11 @@ export default function TextInput({ onCheck, isChecking }: TextInputProps) {
 
   const handleCheck = () => {
     if (!text.trim()) {
-      setError('Please enter some text to check');
+      setError(t('input.errorEmpty'));
       return;
     }
     if (text.length < 50) {
-      setError('Please enter at least 50 characters');
+      setError(t('input.errorShort'));
       return;
     }
     onCheck(text);
@@ -126,9 +162,9 @@ export default function TextInput({ onCheck, isChecking }: TextInputProps) {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Enter Text to Check</h2>
+          <h2 className={styles.title}>{t('input.title')}</h2>
           <p className={styles.description}>
-            Paste, type, or upload a file to check for potential plagiarism
+            {t('input.description')}
           </p>
         </div>
 
@@ -143,11 +179,11 @@ export default function TextInput({ onCheck, isChecking }: TextInputProps) {
               disabled={isChecking}
             />
             <span className={styles.uploadBtn}>
-              <span>📁</span> Upload File
+              <span>📁</span> {t('input.upload')}
             </span>
           </label>
           <span className={styles.uploadHint}>
-            Supports .txt, .docx, .pdf (max 5MB). DOC files must be converted to DOCX.
+            {t('input.uploadHint')}
           </span>
         </div>
         
@@ -170,14 +206,14 @@ export default function TextInput({ onCheck, isChecking }: TextInputProps) {
             onChange={handleTextChange}
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
-            placeholder="Paste your essay, article, or any text here... (or drag & drop a file)"
+            placeholder={t('input.placeholder')}
             className={styles.textarea}
             disabled={isChecking}
           />
           <div className={styles.stats}>
-            <span>{charCount} characters</span>
+            <span>{charCount} {t('input.characters')}</span>
             <span>•</span>
-            <span>{wordCount} words</span>
+            <span>{wordCount} {t('input.words')}</span>
           </div>
         </div>
 
@@ -196,12 +232,12 @@ export default function TextInput({ onCheck, isChecking }: TextInputProps) {
             {isChecking ? (
               <>
                 <span className={styles.spinner}></span>
-                Checking...
+                {t('input.checking')}
               </>
             ) : (
               <>
                 <span>🔍</span>
-                Check for Plagiarism, AI & Grammar
+                {t('input.checkButton')}
               </>
             )}
           </button>
@@ -211,7 +247,7 @@ export default function TextInput({ onCheck, isChecking }: TextInputProps) {
             disabled={isChecking || !text.trim()}
           >
             <span>🗑</span>
-            Clear
+            {t('input.clear')}
           </button>
           <button 
             className={styles.secondaryBtn} 
@@ -219,7 +255,7 @@ export default function TextInput({ onCheck, isChecking }: TextInputProps) {
             disabled={isChecking}
           >
             <span>📄</span>
-            Load Sample
+            {t('input.loadSample')}
           </button>
         </div>
       </div>
