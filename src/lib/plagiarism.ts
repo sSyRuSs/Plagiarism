@@ -100,6 +100,16 @@ function generateNGrams(text: string, n: number): Set<string> {
   return ngrams;
 }
 
+function generateMultiNGrams(text: string, sizes: number[]): Map<number, Set<string>> {
+  const ngramsMap = new Map<number, Set<string>>();
+  
+  for (const size of sizes) {
+    ngramsMap.set(size, generateNGrams(text, size));
+  }
+  
+  return ngramsMap;
+}
+
 function clamp(value: number, min = 0, max = 1): number {
   return Math.min(max, Math.max(min, value));
 }
@@ -369,10 +379,10 @@ function findMatches(inputText: string, docContent: string, threshold: number): 
   return matches;
 }
 
-export function checkPlagiarism(text: string): PlagiarismResult {
+export function checkPlagiarism(text: string, includeCustomDocs: boolean = true): PlagiarismResult {
   const MIN_LENGTH = 50;
   const MAX_LENGTH = 10000;
-  const NGRAM_SIZE = 3;
+  const NGRAM_SIZES = [2, 3, 4]; // Use bi-grams, tri-grams, and 4-grams
   const SIMILARITY_THRESHOLD = 60;
   
   if (text.length < MIN_LENGTH) {
@@ -388,22 +398,47 @@ export function checkPlagiarism(text: string): PlagiarismResult {
   
   const truncatedText = text.length > MAX_LENGTH ? text.substring(0, MAX_LENGTH) : text;
   
-  const inputNGrams = generateNGrams(truncatedText, NGRAM_SIZE);
+  // Combine sample documents with custom documents
+  let allDocuments = [...SAMPLE_DOCUMENTS];
+  if (includeCustomDocs && typeof window !== 'undefined') {
+    try {
+      const customDocs = localStorage.getItem('custom-documents');
+      if (customDocs) {
+        const parsed = JSON.parse(customDocs);
+        allDocuments = [...allDocuments, ...parsed];
+      }
+    } catch (error) {
+      console.error('Failed to load custom documents:', error);
+    }
+  }
+  
+  // Generate multi n-grams for better detection
+  const inputNGramsMap = generateMultiNGrams(truncatedText, NGRAM_SIZES);
   let totalSimilarity = 0;
   let maxSimilarity = 0;
   const allMatches: Match[] = [];
   
-  for (const doc of SAMPLE_DOCUMENTS) {
-    const docNGrams = generateNGrams(doc.content, NGRAM_SIZE);
-    const similarity = calculateSimilarity(inputNGrams, docNGrams);
+  for (const doc of allDocuments) {
+    const docNGramsMap = generateMultiNGrams(doc.content, NGRAM_SIZES);
     
-    if (similarity > maxSimilarity) {
-      maxSimilarity = similarity;
+    // Calculate weighted similarity across different n-gram sizes
+    let weightedSimilarity = 0;
+    const weights = [0.2, 0.5, 0.3]; // Weights for bi-gram, tri-gram, 4-gram
+    
+    NGRAM_SIZES.forEach((size, index) => {
+      const inputNGrams = inputNGramsMap.get(size)!;
+      const docNGrams = docNGramsMap.get(size)!;
+      const similarity = calculateSimilarity(inputNGrams, docNGrams);
+      weightedSimilarity += similarity * weights[index];
+    });
+    
+    if (weightedSimilarity > maxSimilarity) {
+      maxSimilarity = weightedSimilarity;
     }
     
-    totalSimilarity += similarity;
+    totalSimilarity += weightedSimilarity;
     
-    if (similarity >= SIMILARITY_THRESHOLD) {
+    if (weightedSimilarity >= SIMILARITY_THRESHOLD) {
       const matches = findMatches(truncatedText, doc.content, SIMILARITY_THRESHOLD);
       matches.forEach(m => {
         m.source = doc.title;
@@ -412,8 +447,8 @@ export function checkPlagiarism(text: string): PlagiarismResult {
     }
   }
   
-  const avgSimilarity = SAMPLE_DOCUMENTS.length > 0 
-    ? totalSimilarity / SAMPLE_DOCUMENTS.length 
+  const avgSimilarity = allDocuments.length > 0 
+    ? totalSimilarity / allDocuments.length 
     : 0;
   
   const finalSimilarity = Math.max(maxSimilarity, avgSimilarity);

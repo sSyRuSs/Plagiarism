@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import TextInput from '@/components/TextInput';
 import Results from '@/components/Results';
 import HowItWorks from '@/components/HowItWorks';
+import History from '@/components/History';
 import Footer from '@/components/Footer';
 import { checkPlagiarism, PlagiarismResult } from '@/lib/plagiarism';
 import { useHistory } from '@/contexts/HistoryContext';
@@ -15,6 +16,7 @@ export default function Home() {
   const [originalText, setOriginalText] = useState('');
   const [isChecking, setIsChecking] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
   const { addToHistory } = useHistory();
 
   const handleStartCheck = () => {
@@ -42,14 +44,21 @@ export default function Home() {
     }, 500);
   };
 
+  const handleLoadFromHistory = (text: string) => {
+    setOriginalText(text);
+    if (inputRef.current) {
+      inputRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <Header />
       <main>
         <Hero onStartCheck={handleStartCheck} />
         
-        <div id="text-input">
-          <TextInput onCheck={handleCheck} isChecking={isChecking} />
+        <div id="text-input" ref={inputRef}>
+          <TextInput onCheck={handleCheck} isChecking={isChecking} initialText={originalText} />
         </div>
         
         {result && (
@@ -57,6 +66,8 @@ export default function Home() {
             <Results result={result} originalText={originalText} />
           </div>
         )}
+        
+        <History onLoadFromHistory={handleLoadFromHistory} />
         
         <HowItWorks />
       </main>

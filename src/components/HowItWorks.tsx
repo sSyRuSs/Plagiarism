@@ -1,31 +1,34 @@
 'use client';
 
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './HowItWorks.module.css';
 
-const steps = [
-  {
-    icon: '✏️',
-    title: 'Enter Your Text',
-    description: 'Paste or type your content into the text area. You can check essays, articles, or any written content.',
-  },
-  {
-    icon: '🔍',
-    title: 'Analyze for Similarity',
-    description: 'Our engine checks plagiarism sources, AI writing patterns, and grammar/vocabulary signals.',
-  },
-  {
-    icon: '📊',
-    title: 'View Results',
-    description: 'Get instant feedback with similarity, AI likelihood, grammar/vocabulary scores, and highlights.',
-  },
-];
-
 export default function HowItWorks() {
+  const { t } = useLanguage();
+  
+  const steps = [
+    {
+      icon: '✏️',
+      title: t('howItWorks.step1.title'),
+      description: t('howItWorks.step1.desc'),
+    },
+    {
+      icon: '🔍',
+      title: t('howItWorks.step2.title'),
+      description: t('howItWorks.step2.desc'),
+    },
+    {
+      icon: '📊',
+      title: t('howItWorks.step3.title'),
+      description: t('howItWorks.step3.desc'),
+    },
+  ];
+  
   return (
     <section id="how-it-works" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>How It Works</h2>
+          <h2 className={styles.title}>{t('howItWorks.title')}</h2>
           <p className={styles.subtitle}>
             Check your text for plagiarism in three simple steps
           </p>

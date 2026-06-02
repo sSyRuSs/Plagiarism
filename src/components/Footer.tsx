@@ -1,8 +1,11 @@
 'use client';
 
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+  const { t } = useLanguage();
+  
   return (
     <footer id="about" className={styles.footer}>
       <div className={styles.container}>
@@ -12,12 +15,11 @@ export default function Footer() {
             <span className={styles.logoText}>PlagiarismChecker</span>
           </div>
           <p className={styles.description}>
-            A free online tool for checking text similarity, AI writing signals, and grammar quality. 
-            Perfect for students, writers, and educators.
+            {t('footer.text')}
           </p>
           <div className={styles.links}>
-            <a href="#home">Home</a>
-            <a href="#how-it-works">How It Works</a>
+            <a href="#home">{t('nav.home')}</a>
+            <a href="#how-it-works">{t('nav.howItWorks')}</a>
           </div>
         </div>
         <div className={styles.bottom}>
