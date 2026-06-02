@@ -1,0 +1,250 @@
+.section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.comparisonWrapper {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  background: var(--color-surface);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 400px;
+}
+
+.columnHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.columnTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.matchCount,
+.sourceCount {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  font-weight: 500;
+  background: rgba(233, 69, 96, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+.divider {
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--color-border), transparent);
+  align-self: stretch;
+}
+
+.textDisplay {
+  flex: 1;
+  padding: 1.5rem;
+  background: var(--color-background);
+  border-radius: 0.5rem;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: var(--color-text);
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.normal {
+  color: var(--color-text);
+}
+
+.highlighted {
+  background: rgba(233, 69, 96, 0.2);
+  border-bottom: 2px solid var(--color-accent);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+}
+
+.sourcesList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: 600px;
+  padding-right: 0.5rem;
+}
+
+.sourceCard {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.sourceCard:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.15);
+  transform: translateY(-2px);
+}
+
+.sourceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sourceName {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.sourceMatches {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.matchItem {
+  padding: 0.75rem;
+  background: var(--color-surface);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.matchQuote {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.moreMatches {
+  text-align: center;
+  padding: 0.75rem;
+  color: var(--color-accent);
+  font-weight: 500;
+  font-size: 0.875rem;
+  background: rgba(233, 69, 96, 0.05);
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.noSources {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.noSourcesIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--color-success);
+}
+
+.noSources p {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+/* Scrollbar styling */
+.textDisplay::-webkit-scrollbar,
+.sourcesList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.textDisplay::-webkit-scrollbar-track,
+.sourcesList::-webkit-scrollbar-track {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.textDisplay::-webkit-scrollbar-thumb,
+.sourcesList::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 4px;
+}
+
+.textDisplay::-webkit-scrollbar-thumb:hover,
+.sourcesList::-webkit-scrollbar-thumb:hover {
+  background: #d43d5a;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .comparisonWrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .column {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .comparisonWrapper {
+    padding: 1.5rem;
+  }
+
+  .textDisplay,
+  .sourcesList {
+    max-height: 400px;
+  }
+}

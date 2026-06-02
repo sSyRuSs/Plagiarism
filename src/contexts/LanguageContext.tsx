@@ -82,6 +82,18 @@ const translations: Record<Language, Record<string, string>> = {
     'history.viewDetails': 'View Details',
     'history.delete': 'Delete',
     'history.checked': 'Checked',
+    
+    // Comparison View
+    'comparison.title': 'Side-by-Side Comparison',
+    'comparison.description': 'Compare your text with matching sources',
+    'comparison.originalText': 'Your Text',
+    'comparison.sources': 'Matching Sources',
+    'comparison.matches': 'matches',
+    'comparison.more': 'more',
+    'comparison.noSources': 'No matching sources found',
+    
+    // Export
+    'results.exportTXT': 'Export TXT',
   },
   vi: {
     // Header
@@ -154,6 +166,18 @@ const translations: Record<Language, Record<string, string>> = {
     'history.viewDetails': 'Xem Chi Tiết',
     'history.delete': 'Xóa',
     'history.checked': 'Đã kiểm tra',
+    
+    // Comparison View
+    'comparison.title': 'So Sánh Song Song',
+    'comparison.description': 'So sánh văn bản của bạn với các nguồn trùng khớp',
+    'comparison.originalText': 'Văn Bản Của Bạn',
+    'comparison.sources': 'Nguồn Trùng Khớp',
+    'comparison.matches': 'trùng khớp',
+    'comparison.more': 'thêm',
+    'comparison.noSources': 'Không tìm thấy nguồn trùng khớp',
+    
+    // Export
+    'results.exportTXT': 'Xuất TXT',
   },
 };
 

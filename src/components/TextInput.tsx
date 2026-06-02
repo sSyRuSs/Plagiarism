@@ -9,17 +9,26 @@ interface TextInputProps {
   onCheck: (text: string) => void;
   isChecking: boolean;
   initialText?: string;
+  onRealtimeChange?: (text: string) => void;
+  realtimeEnabled?: boolean;
 }
 
 const SAMPLE_TEXT = `Machine learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. The field has gained tremendous popularity in recent years due to the abundance of data and increased computing power.`;
 
-export default function TextInput({ onCheck, isChecking, initialText }: TextInputProps) {
+export default function TextInput({ 
+  onCheck, 
+  isChecking, 
+  initialText,
+  onRealtimeChange,
+  realtimeEnabled = false 
+}: TextInputProps) {
   const { t } = useLanguage();
   const [text, setText] = useState(initialText || '');
   const [error, setError] = useState('');
   const [fileName, setFileName] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const allowedTypes = ['.txt', '.doc', '.docx', '.pdf'];
 
   useEffect(() => {
@@ -33,6 +42,24 @@ export default function TextInput({ onCheck, isChecking, initialText }: TextInpu
       textareaRef.current.focus();
     }
   }, []);
+
+  useEffect(() => {
+    if (realtimeEnabled && onRealtimeChange && text.length >= 50) {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+      
+      debounceTimerRef.current = setTimeout(() => {
+        onRealtimeChange(text);
+      }, 1500); // 1.5 second debounce
+    }
+
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [text, realtimeEnabled, onRealtimeChange]);
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
