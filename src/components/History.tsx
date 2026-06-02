@@ -41,7 +41,7 @@ export default function History({ onLoadFromHistory }: HistoryProps) {
             <button
               className={styles.clearBtn}
               onClick={() => {
-                if (confirm('Are you sure you want to clear all history?')) {
+                if (confirm(t('history.confirmClear'))) {
                   clearHistory();
                 }
               }}

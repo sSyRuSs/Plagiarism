@@ -12,8 +12,10 @@ import Analytics from '@/components/Analytics';
 import Footer from '@/components/Footer';
 import { checkPlagiarism, PlagiarismResult } from '@/lib/plagiarism';
 import { useHistory } from '@/contexts/HistoryContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Home() {
+  const { t } = useLanguage();
   const [result, setResult] = useState<PlagiarismResult | null>(null);
   const [originalText, setOriginalText] = useState('');
   const [isChecking, setIsChecking] = useState(false);
@@ -104,7 +106,7 @@ export default function Home() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  {showComparison ? '✕ Hide Comparison' : '⚡ Show Side-by-Side Comparison'}
+                  {showComparison ? `✕ ${t('comparison.hide')}` : `⚡ ${t('comparison.show')}`}
                 </button>
               </div>
             )}

@@ -62,9 +62,9 @@ export default function ComparisonView({ originalText, result }: ComparisonViewP
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>{t('comparison.title') || 'Side-by-Side Comparison'}</h2>
+          <h2 className={styles.title}>{t('comparison.title')}</h2>
           <p className={styles.description}>
-            {t('comparison.description') || 'Compare your text with matching sources'}
+            {t('comparison.description')}
           </p>
         </div>
 
@@ -73,10 +73,10 @@ export default function ComparisonView({ originalText, result }: ComparisonViewP
           <div className={styles.column}>
             <div className={styles.columnHeader}>
               <h3 className={styles.columnTitle}>
-                {t('comparison.originalText') || 'Your Text'}
+                {t('comparison.originalText')}
               </h3>
               <span className={styles.matchCount}>
-                {result.matches.length} {t('comparison.matches') || 'matches'}
+                {result.matches.length} {t('comparison.matches')}
               </span>
             </div>
             <div className={styles.textDisplay}>
@@ -99,10 +99,10 @@ export default function ComparisonView({ originalText, result }: ComparisonViewP
           <div className={styles.column}>
             <div className={styles.columnHeader}>
               <h3 className={styles.columnTitle}>
-                {t('comparison.sources') || 'Matching Sources'}
+                {t('comparison.sources')}
               </h3>
               <span className={styles.sourceCount}>
-                {Object.keys(matchesBySource).length} {t('comparison.sources') || 'sources'}
+                {Object.keys(matchesBySource).length} {t('comparison.sources')}
               </span>
             </div>
             <div className={styles.sourcesList}>
@@ -111,7 +111,7 @@ export default function ComparisonView({ originalText, result }: ComparisonViewP
                   <div className={styles.sourceHeader}>
                     <span className={styles.sourceName}>📄 {source}</span>
                     <span className={styles.sourceMatches}>
-                      {matches.length} {t('comparison.matches') || 'matches'}
+                      {matches.length} {t('comparison.matches')}
                     </span>
                   </div>
                   <div className={styles.sourceMatches}>
@@ -122,7 +122,7 @@ export default function ComparisonView({ originalText, result }: ComparisonViewP
                     ))}
                     {matches.length > 5 && (
                       <div className={styles.moreMatches}>
-                        +{matches.length - 5} {t('comparison.more') || 'more'}
+                        +{matches.length - 5} {t('comparison.more')}
                       </div>
                     )}
                   </div>
@@ -131,7 +131,7 @@ export default function ComparisonView({ originalText, result }: ComparisonViewP
               {Object.keys(matchesBySource).length === 0 && (
                 <div className={styles.noSources}>
                   <span className={styles.noSourcesIcon}>✓</span>
-                  <p>{t('comparison.noSources') || 'No matching sources found'}</p>
+                  <p>{t('comparison.noSources')}</p>
                 </div>
               )}
             </div>

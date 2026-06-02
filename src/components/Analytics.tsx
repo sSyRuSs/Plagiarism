@@ -88,10 +88,10 @@ export default function Analytics() {
           <div className={styles.emptyState}>
             <span className={styles.emptyIcon}>📊</span>
             <h3 className={styles.emptyTitle}>
-              {t('analytics.noData') || 'No Analytics Data Yet'}
+              {t('analytics.noData')}
             </h3>
             <p className={styles.emptyDesc}>
-              {t('analytics.noDataDesc') || 'Start checking documents to see analytics and insights'}
+              {t('analytics.noDataDesc')}
             </p>
           </div>
         </div>
@@ -104,10 +104,10 @@ export default function Analytics() {
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>
-            {t('analytics.title') || 'Analytics Dashboard'}
+            {t('analytics.title')}
           </h2>
           <p className={styles.description}>
-            {t('analytics.description') || 'Insights from your plagiarism checks'}
+            {t('analytics.description')}
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function Analytics() {
             <div className={styles.statIcon}>📝</div>
             <div className={styles.statContent}>
               <h4 className={styles.statLabel}>
-                {t('analytics.totalChecks') || 'Total Checks'}
+                {t('analytics.totalChecks')}
               </h4>
               <div className={styles.statValue}>{stats.totalChecks}</div>
             </div>
@@ -128,7 +128,7 @@ export default function Analytics() {
             <div className={styles.statIcon}>📊</div>
             <div className={styles.statContent}>
               <h4 className={styles.statLabel}>
-                {t('analytics.avgSimilarity') || 'Avg Similarity'}
+                {t('analytics.avgSimilarity')}
               </h4>
               <div className={styles.statValue}>{stats.avgSimilarity}%</div>
               <div className={styles.statTrend}>
@@ -146,7 +146,7 @@ export default function Analytics() {
             <div className={styles.statIcon}>🤖</div>
             <div className={styles.statContent}>
               <h4 className={styles.statLabel}>
-                {t('analytics.avgAiScore') || 'Avg AI Likelihood'}
+                {t('analytics.avgAiScore')}
               </h4>
               <div className={styles.statValue}>{stats.avgAiScore}%</div>
             </div>
@@ -157,7 +157,7 @@ export default function Analytics() {
             <div className={styles.statIcon}>✍️</div>
             <div className={styles.statContent}>
               <h4 className={styles.statLabel}>
-                {t('analytics.avgWritingQuality') || 'Avg Writing Quality'}
+                {t('analytics.avgWritingQuality')}
               </h4>
               <div className={styles.statValue}>{stats.avgWritingQuality}%</div>
             </div>
@@ -167,12 +167,12 @@ export default function Analytics() {
         {/* Risk Distribution */}
         <div className={styles.chartCard}>
           <h3 className={styles.chartTitle}>
-            {t('analytics.riskDistribution') || 'Risk Distribution'}
+            {t('analytics.riskDistribution')}
           </h3>
           <div className={styles.riskBars}>
             <div className={styles.riskBar}>
               <div className={styles.riskLabel}>
-                <span>{t('analytics.lowRisk') || 'Low Risk'}</span>
+                <span>{t('analytics.lowRisk')}</span>
                 <span className={styles.riskCount}>{stats.lowRiskCount}</span>
               </div>
               <div className={styles.barTrack}>
@@ -186,7 +186,7 @@ export default function Analytics() {
             </div>
             <div className={styles.riskBar}>
               <div className={styles.riskLabel}>
-                <span>{t('analytics.moderateRisk') || 'Moderate Risk'}</span>
+                <span>{t('analytics.moderateRisk')}</span>
                 <span className={styles.riskCount}>
                   {stats.totalChecks - stats.lowRiskCount - stats.highRiskCount}
                 </span>
@@ -206,7 +206,7 @@ export default function Analytics() {
             </div>
             <div className={styles.riskBar}>
               <div className={styles.riskLabel}>
-                <span>{t('analytics.highRisk') || 'High Risk'}</span>
+                <span>{t('analytics.highRisk')}</span>
                 <span className={styles.riskCount}>{stats.highRiskCount}</span>
               </div>
               <div className={styles.barTrack}>
@@ -225,14 +225,14 @@ export default function Analytics() {
         {stats.topSources.length > 0 && (
           <div className={styles.chartCard}>
             <h3 className={styles.chartTitle}>
-              {t('analytics.topSources') || 'Top Matching Sources'}
+              {t('analytics.topSources')}
             </h3>
             <div className={styles.sourcesList}>
               {stats.topSources.map((item, idx) => (
                 <div key={idx} className={styles.sourceItem}>
                   <div className={styles.sourceRank}>{idx + 1}</div>
                   <div className={styles.sourceName}>{item.source}</div>
-                  <div className={styles.sourceCount}>{item.count} matches</div>
+                  <div className={styles.sourceCount}>{item.count} {t('analytics.matches')}</div>
                 </div>
               ))}
             </div>
@@ -243,7 +243,7 @@ export default function Analytics() {
         {stats.recentTrend.length > 0 && (
           <div className={styles.chartCard}>
             <h3 className={styles.chartTitle}>
-              {t('analytics.recentTrend') || 'Recent Similarity Trend'}
+              {t('analytics.recentTrend')}
             </h3>
             <div className={styles.trendChart}>
               {stats.recentTrend.map((item, idx) => (

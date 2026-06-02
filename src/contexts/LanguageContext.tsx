@@ -91,6 +91,8 @@ const translations: Record<Language, Record<string, string>> = {
     'comparison.matches': 'matches',
     'comparison.more': 'more',
     'comparison.noSources': 'No matching sources found',
+    'comparison.hide': 'Hide Comparison',
+    'comparison.show': 'Show Side-by-Side Comparison',
     
     // Analytics
     'analytics.title': 'Analytics Dashboard',
@@ -107,6 +109,10 @@ const translations: Record<Language, Record<string, string>> = {
     'analytics.highRisk': 'High Risk',
     'analytics.topSources': 'Top Matching Sources',
     'analytics.recentTrend': 'Recent Similarity Trend',
+    'analytics.matches': 'matches',
+    
+    // History
+    'history.confirmClear': 'Are you sure you want to clear all history? This action cannot be undone.',
     
     // Export
     'results.exportTXT': 'Export TXT',
@@ -191,6 +197,8 @@ const translations: Record<Language, Record<string, string>> = {
     'comparison.matches': 'trùng khớp',
     'comparison.more': 'thêm',
     'comparison.noSources': 'Không tìm thấy nguồn trùng khớp',
+    'comparison.hide': 'Ẩn So Sánh',
+    'comparison.show': 'Hiển Thị So Sánh Song Song',
     
     // Analytics
     'analytics.title': 'Bảng Phân Tích',
@@ -207,6 +215,10 @@ const translations: Record<Language, Record<string, string>> = {
     'analytics.highRisk': 'Rủi Ro Cao',
     'analytics.topSources': 'Nguồn Trùng Khớp Hàng Đầu',
     'analytics.recentTrend': 'Xu Hướng Tương Đồng Gần Đây',
+    'analytics.matches': 'trùng khớp',
+    
+    // History
+    'history.confirmClear': 'Bạn có chắc chắn muốn xóa toàn bộ lịch sử? Hành động này không thể hoàn tác.',
     
     // Export
     'results.exportTXT': 'Xuất TXT',

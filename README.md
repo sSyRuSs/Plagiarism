@@ -238,14 +238,12 @@ MIT License - feel free to use this project for any purpose.
 
 ## 🔮 Future Enhancements
 
-- [ ] Real-time checking as you type
-- [ ] Side-by-side comparison view
-- [ ] Analytics dashboard with statistics
 - [ ] More file format support (RTF, ODT)
 - [ ] API endpoint for programmatic access
 - [ ] Browser extension
 - [ ] Citation generator
 - [ ] Paraphrasing suggestions
+- [ ] Additional language support beyond English/Vietnamese
 
 ## 📞 Support
 

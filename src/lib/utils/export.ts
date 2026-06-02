@@ -276,7 +276,7 @@ export function exportToPDF(result: PlagiarismResult, originalText: string): voi
         .map(
           issue => `
         <div style="padding: 8px; background: white; margin-top: 5px; border-radius: 4px;">
-          <span style="color: #e94560; font-weight: bold;">${issue.category}:</span> ${issue.message}
+          <span style="color: #e94560; font-weight: bold;">${escapeHtml(issue.category)}:</span> ${escapeHtml(issue.message)}
         </div>
       `
         )
@@ -297,8 +297,8 @@ export function exportToPDF(result: PlagiarismResult, originalText: string): voi
       .map(
         match => `
       <div class="match-item">
-        <div class="match-text">"${match.text}"</div>
-        <div class="match-source">Source: ${match.source}</div>
+        <div class="match-text">"${escapeHtml(match.text)}"</div>
+        <div class="match-source">Source: ${escapeHtml(match.source)}</div>
       </div>
     `
       )

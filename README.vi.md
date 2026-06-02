@@ -238,14 +238,12 @@ Giấy phép MIT - thoải mái sử dụng dự án này cho bất kỳ mục �
 
 ## 🔮 Cải tiến Tương lai
 
-- [ ] Kiểm tra real-time khi gõ
-- [ ] Chế độ xem so sánh song song
-- [ ] Bảng điều khiển phân tích với thống kê
 - [ ] Hỗ trợ thêm định dạng file (RTF, ODT)
 - [ ] API endpoint để truy cập theo chương trình
 - [ ] Extension trình duyệt
 - [ ] Trình tạo trích dẫn
 - [ ] Gợi ý diễn đạt lại
+- [ ] Hỗ trợ thêm ngôn ngữ ngoài Tiếng Anh/Tiếng Việt
 
 ## 📞 Hỗ trợ
 
