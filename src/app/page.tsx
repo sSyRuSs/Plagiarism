@@ -8,12 +8,14 @@ import Results from '@/components/Results';
 import HowItWorks from '@/components/HowItWorks';
 import Footer from '@/components/Footer';
 import { checkPlagiarism, PlagiarismResult } from '@/lib/plagiarism';
+import { useHistory } from '@/contexts/HistoryContext';
 
 export default function Home() {
   const [result, setResult] = useState<PlagiarismResult | null>(null);
   const [originalText, setOriginalText] = useState('');
   const [isChecking, setIsChecking] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const { addToHistory } = useHistory();
 
   const handleStartCheck = () => {
     const inputSection = document.getElementById('text-input');
@@ -29,6 +31,7 @@ export default function Home() {
     setTimeout(() => {
       const plagiarismResult = checkPlagiarism(text);
       setResult(plagiarismResult);
+      addToHistory(text, plagiarismResult);
       setIsChecking(false);
       
       setTimeout(() => {
